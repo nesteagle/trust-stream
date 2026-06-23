@@ -12,6 +12,7 @@ def _load_json(file_path: Union[str, Path]) -> Dict[str, Any]:
 
 
 def _extract_rounds(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
+    """Extracts rounds data JSON to a DataFrame"""
     records = []
 
     for round_idx, rnd in enumerate(rounds_data):
@@ -42,6 +43,7 @@ def _extract_rounds(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
 
 
 def _extract_participants(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
+    """Extracts participants data JSON to a DataFrame"""
     records = []
 
     for round_idx, rnd in enumerate(rounds_data):
@@ -64,6 +66,7 @@ def _extract_participants(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
 
 
 def _extract_comms(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
+    """Extracts communications data JSON to a DataFrame"""
     records = []
 
     for round_idx, rnd in enumerate(rounds_data):
