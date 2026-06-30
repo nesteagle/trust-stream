@@ -30,7 +30,7 @@ def _normalize_role(role: str) -> str:
 def resolve_and_tidy(
     df: pd.DataFrame, max_hour_difference=1
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
-    """Processes and corrects dataset; derives edges from direct replies + implicit mentions"""
+    """Corrects dataset and standardizes time to pd.Timestamp; derives edges from direct replies + implicit mentions"""
     df_working = df.copy()
     df_working["timestamp"] = pd.to_datetime(df_working["timestamp"])
     sort_cols = [c for c in ["round_index", "timestamp"] if c in df_working.columns]
