@@ -129,7 +129,12 @@ def resolve_and_tidy(
             id=msg_id, timestamp=current_ts
         )
 
-    df_messages = pd.DataFrame(records).drop(columns=["responding_to"])
+    df_messages = pd.DataFrame(records)
+    df_messages["reasoning"] = (
+        df_messages[["reacting", "rationalizing", "deliberating"]]
+        .bfill(axis=1)
+        .iloc[:, 0]
+    ).drop(columns=["responding_to", "reacting", "rationalizing", "deliberating"])
     df_edges = (
         pd.DataFrame(edges)
         if edges
