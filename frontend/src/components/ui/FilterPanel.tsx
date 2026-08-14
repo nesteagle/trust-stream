@@ -31,7 +31,7 @@ export const FilterPanel: React.FC = () => {
             key={value}
             onClick={() => toggle(value)}
             aria-pressed={active}
-            className={`flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded border transition-colors cursor-pointer ${
+            className={`flex items-center gap-1.5 text-sm font-medium px-2 py-1 rounded border transition-colors cursor-pointer ${
               active
                 ? "border-gray-300 bg-gray-50 text-slate-600"
                 : "border-gray-200 bg-white text-gray-300"
