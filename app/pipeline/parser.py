@@ -1,18 +1,18 @@
 import json
 from pathlib import Path
-from typing import Any, Dict, List, Union
+from typing import Any
 
 import pandas as pd
 
 
-def _load_json(file_path: Union[str, Path]) -> Dict[str, Any]:
+def _load_json(file_path: str | Path) -> dict[str, Any]:
     """Loads JSON from file path"""
     path = Path(file_path)
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def _extract_rounds(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
+def _extract_rounds(rounds_data: list[dict[str, Any]]) -> pd.DataFrame:
     """Extracts rounds JSON data to a DataFrame"""
     records = []
 
@@ -43,7 +43,7 @@ def _extract_rounds(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
     return pd.DataFrame(records)
 
 
-def _extract_participants(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
+def _extract_participants(rounds_data: list[dict[str, Any]]) -> pd.DataFrame:
     """Extracts participants JSON data to a DataFrame"""
     records = []
 
@@ -66,7 +66,7 @@ def _extract_participants(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
     return pd.DataFrame(records)
 
 
-def _extract_comms(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
+def _extract_comms(rounds_data: list[dict[str, Any]]) -> pd.DataFrame:
     """Extracts communications JSON data to a DataFrame"""
     records = []
 
@@ -96,19 +96,19 @@ def _extract_comms(rounds_data: List[Dict[str, Any]]) -> pd.DataFrame:
     return pd.DataFrame(records)
 
 
-def load_comms_dataframe(file_path: Union[str, Path]) -> pd.DataFrame:
+def load_comms_dataframe(file_path: str | Path) -> pd.DataFrame:
     """External API function for loading communications"""
     raw_data = _load_json(file_path)
     return _extract_comms(raw_data.get("rounds", []))
 
 
-def load_rounds_dataframe(file_path: Union[str, Path]) -> pd.DataFrame:
+def load_rounds_dataframe(file_path: str | Path) -> pd.DataFrame:
     """External API function for loading rounds"""
     raw_data = _load_json(file_path)
     return _extract_rounds(raw_data.get("rounds", []))
 
 
-def load_participants_dataframe(file_path: Union[str, Path]) -> pd.DataFrame:
+def load_participants_dataframe(file_path: str | Path) -> pd.DataFrame:
     """External API function for loading participants"""
     raw_data = _load_json(file_path)
     return _extract_participants(raw_data.get("rounds", []))

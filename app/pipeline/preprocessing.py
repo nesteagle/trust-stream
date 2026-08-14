@@ -1,10 +1,11 @@
 from dataclasses import dataclass
 from datetime import timedelta
-from typing import Any, Dict, Tuple
+from typing import Any
 
 import pandas as pd
 
 # convert to true role found in data
+# VAST committee confirmed this error, and could have a patch out eventually.
 CORRECTION_ROLE_MAP = {"social_manager": "social_media"}
 
 # message ping origins are searched in this order
@@ -29,7 +30,7 @@ def _normalize_role(role: str) -> str:
 
 def resolve_and_tidy(
     df: pd.DataFrame, max_hour_difference=1
-) -> Tuple[pd.DataFrame, pd.DataFrame]:
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Corrects dataset and standardizes time to pd.Timestamp; derives edges from direct replies + implicit mentions"""
     df_working = df.copy()
     df_working["timestamp"] = pd.to_datetime(df_working["timestamp"])
@@ -40,7 +41,7 @@ def resolve_and_tidy(
 
     channel_to_index = {ch.strip().lower(): i for i, ch in enumerate(CHANNEL_HIERARCHY)}
 
-    thread_registry: Dict[Any, MessageThread] = {}
+    thread_registry: dict[Any, MessageThread] = {}
     role_by_msg_id: dict = {}
     members_by_msg_id: dict = {}
 
