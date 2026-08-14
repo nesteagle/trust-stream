@@ -1,3 +1,9 @@
+"""Earlier version of an internal thread visualization (legacy). 
+
+Running on prior uncorrected data shows malformed future time references. 
+Included for reference but not used in the final TrustStream system.
+"""
+
 import os
 import textwrap
 from collections import defaultdict, deque
@@ -9,7 +15,6 @@ import plotly.graph_objects as go
 from app.pipeline.parser import load_comms_dataframe
 from app.pipeline.preprocessing import resolve_and_tidy
 
-# TODO: consider colorblind-friendly palettes
 AGENT_PALETTE = px.colors.qualitative.Plotly
 EDGE_PALETTE = px.colors.qualitative.D3
 

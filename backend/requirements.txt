@@ -2,3 +2,4 @@ pandas
 eval-judge
 networkx
 numpy
+plotly
